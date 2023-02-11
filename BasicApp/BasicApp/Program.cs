@@ -1,21 +1,18 @@
 ﻿
-string name = "Mat196";
-int age = 21;
-bool isMan = true;
+var number = 11122730000;
+var numberAsString = number.ToString();
+var tableForNumbers = numberAsString.ToCharArray();
+var from0To9 = new int[10];
 
-if (age < 30 && isMan == false)
+foreach(var elem in tableForNumbers)
 {
-    Console.WriteLine("Kobieta poniżej 30 lat");
+    from0To9[ Convert.ToInt32(elem) - 48 ] += 1;
 }
-else if (age == 33 && name == "Ewa")
+
+Console.WriteLine("Podana liczba: " + number + "\n");
+Console.WriteLine("Ilość wystąpień cyfr:");
+for (var i = 0; i < 10; i++)
 {
-    Console.WriteLine("Ewa, lat 33");
+    Console.WriteLine(i + " => " + from0To9[i]);
 }
-else if (age < 18 && isMan == true)
-{
-    Console.WriteLine("Niepełnoletni mężczyzna");
-}
-else
-{
-    Console.WriteLine("Inna konfiguracja");
-}
+
