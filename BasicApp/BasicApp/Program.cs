@@ -1,18 +1,38 @@
-﻿
-var number = 11122730000;
-var numberAsString = number.ToString();
-var tableForNumbers = numberAsString.ToCharArray();
-var from0To9 = new int[10];
+﻿using BasicApp;
 
-foreach(var elem in tableForNumbers)
+Employee emp1 = new Employee("Jan", "Kowalski", 45);
+Employee emp2 = new Employee("Michał", "Nowak", 37);
+Employee emp3 = new Employee("Anna", "Zawadzka", 42);
+
+List<Employee> listOfStaff = new List<Employee>()
+{emp1, emp2, emp3};
+
+Random rnd = new Random();
+
+foreach(Employee emp in listOfStaff)
 {
-    from0To9[ Convert.ToInt32(elem) - 48 ] += 1;
+	for (int i = 0; i < 5; i++)
+	{
+		emp.AddScore(rnd.Next(1, 11));
+	}
 }
 
-Console.WriteLine("Podana liczba: " + number + "\n");
-Console.WriteLine("Ilość wystąpień cyfr:");
-for (var i = 0; i < 10; i++)
+Employee bestEmp = new Employee("", "", 0);
+int record = -1;
+
+foreach(Employee emp in listOfStaff)
 {
-    Console.WriteLine(i + " => " + from0To9[i]);
+	int temp = emp.SumScore();
+    if (temp > record)
+	{
+		record = temp;
+		bestEmp = emp;
+	}
 }
 
+Console.WriteLine("Rekordowa ilość punktów: " 
+					+ bestEmp.ReturnFullName() + ", wiek: "
+					+ bestEmp.age);
+
+Console.WriteLine("Ilość punktów wynosi: " + bestEmp.SumScore());
+Console.WriteLine();
