@@ -30,9 +30,13 @@ foreach (Employee emp in listOfStaff)
     }
 }
 
-Console.WriteLine("Rekordowa ilość punktów: "
-                    + bestEmp.ReturnFullName() + ", wiek: "
-                    + bestEmp.age);
+Console.WriteLine($"Rekordowa ilość punktów: {bestEmp.name} {bestEmp.surname}, wiek: {bestEmp.age}");
+Console.WriteLine($"Ilość punktów wynosi: {bestEmp.SumScore()}");
+Console.WriteLine();
 
-Console.WriteLine("Ilość punktów wynosi: " + bestEmp.SumScore());
+Console.WriteLine($"Statystyki dla: {bestEmp.name} {bestEmp.surname}");
+var bestEmpStats = bestEmp.GetStatistics();
+Console.WriteLine($"Minimalny wynik: {bestEmpStats.MinScore}");
+Console.WriteLine($"Maksymalny wynik: {bestEmpStats.MaxScore}");
+Console.WriteLine($"Średnia: {bestEmpStats.AverageScore}");
 Console.WriteLine();

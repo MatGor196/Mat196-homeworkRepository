@@ -24,7 +24,20 @@
             return (this.scores).Sum();
         }
 
-        public string ReturnFullName()
-        { return this.name + " " + this.surname; }
+        public Statistics GetStatistics()
+        {
+            Statistics stat = new Statistics();
+
+            foreach(var score in this.scores)
+            {
+                stat.MinScore = Math.Min(stat.MinScore, score);
+                stat.MaxScore = Math.Max(stat.MaxScore, score);
+                stat.AverageScore += score;
+            }
+
+            stat.AverageScore /= (this.scores).Count();
+
+            return stat;
+        }
     }
 }
