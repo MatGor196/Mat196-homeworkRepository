@@ -73,5 +73,18 @@ namespace BasicApp.Tests
             //assert
             Assert.AreEqual(stat.AverageScore, 0.75);
         }
+
+        [Test]
+        public void AverageScoreForEmptyEmployeeTest()
+        {
+            // arrange
+            Employee emp = new Employee("name", "surname", 0);
+
+            // act
+            var stat = emp.GetStatistics();
+
+            //assert
+            Assert.AreEqual(stat.AverageScore, float.MinValue);
+        }
     }
 }

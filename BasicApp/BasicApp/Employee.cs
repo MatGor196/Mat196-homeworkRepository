@@ -35,7 +35,14 @@
                 stat.AverageScore += score;
             }
 
-            stat.AverageScore /= (this.scores).Count();
+            if((this.scores).Count() != 0)
+            {
+                stat.AverageScore /= (this.scores).Count();
+            }
+            else
+            {
+                stat.AverageScore = float.MinValue; // means error
+            }
 
             return stat;
         }
