@@ -9,30 +9,30 @@ List<Employee> listOfStaff = new List<Employee>()
 
 Random rnd = new Random();
 
-foreach(Employee emp in listOfStaff)
+foreach (Employee emp in listOfStaff)
 {
-	for (int i = 0; i < 5; i++)
-	{
-		emp.AddScore(rnd.Next(1, 11));
-	}
+    for (int i = 0; i < 5; i++)
+    {
+        emp.AddScore(rnd.Next(1, 11));
+    }
 }
 
 Employee bestEmp = new Employee("", "", 0);
 int record = -1;
 
-foreach(Employee emp in listOfStaff)
+foreach (Employee emp in listOfStaff)
 {
-	int temp = emp.SumScore();
+    int temp = emp.SumScore();
     if (temp > record)
-	{
-		record = temp;
-		bestEmp = emp;
-	}
+    {
+        record = temp;
+        bestEmp = emp;
+    }
 }
 
-Console.WriteLine("Rekordowa ilość punktów: " 
-					+ bestEmp.ReturnFullName() + ", wiek: "
-					+ bestEmp.age);
+Console.WriteLine("Rekordowa ilość punktów: "
+                    + bestEmp.ReturnFullName() + ", wiek: "
+                    + bestEmp.age);
 
 Console.WriteLine("Ilość punktów wynosi: " + bestEmp.SumScore());
 Console.WriteLine();
