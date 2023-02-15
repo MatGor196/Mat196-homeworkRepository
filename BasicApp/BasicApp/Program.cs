@@ -46,7 +46,14 @@ Console.WriteLine($"Ilość punktów wynosi: {bestEmp.SumScore()}");
 Console.WriteLine();
 
 Console.WriteLine($"Statystyki dla: {bestEmp.name} {bestEmp.surname}");
+
 var bestEmpStats = bestEmp.GetStatistics();
+
+var bestEmpStats1 = bestEmp.GetStatisticsWithForEach();
+var bestEmpStats2 = bestEmp.GetStatisticsWithFor();
+var bestEmpStats3 = bestEmp.GetStatisticsWithDoWhile();
+var bestEmpStats4 = bestEmp.GetStatisticsWithWhile();
+
 Console.WriteLine($"Minimalny wynik: {bestEmpStats.MinScore}");
 Console.WriteLine($"Maksymalny wynik: {bestEmpStats.MaxScore}");
 Console.WriteLine($"Średnia: {bestEmpStats.AverageScore}");
