@@ -16,7 +16,38 @@
         }
         public void AddScore(int score)
         {
-            (this.scores).Add(score);
+            if(1 <= score && score <= 10)
+            {
+                (this.scores).Add(score);
+            }
+            else
+            {
+                Console.WriteLine("Score is outside the range");
+            }
+        }
+
+        public void AddScore(string score)
+        {
+            if(int.TryParse(score, out int resultInInt))
+            {
+                this.AddScore(resultInInt);
+            }
+            else
+            {
+                Console.WriteLine("Cannot convert string to int");
+            }
+        }
+
+        public void AddScore(float score)
+        {
+            int scoreInInt = (int)Math.Round(score);
+            this.AddScore(scoreInInt);
+        }
+
+        public void AddScore(double score)
+        {
+            int scoreInInt = (int)Math.Round(score);
+            this.AddScore(scoreInInt);
         }
 
         public int SumScore()
