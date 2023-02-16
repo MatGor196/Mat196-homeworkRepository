@@ -1,6 +1,7 @@
-﻿namespace BasicApp
+﻿
+namespace BasicApp
 {
-    public class Employee : IEmployee
+    public class Supervisor : IEmployee
     {
         public string name { get; private set; }
         public string surname { get; private set; }
@@ -9,7 +10,7 @@
 
         private List<int> scores = new List<int>();
 
-        public Employee()
+        public Supervisor()
         {
             this.name = "no name";
             this.surname = "no surname";
@@ -17,7 +18,7 @@
             this.sex = "M";
         }
 
-        public Employee(string name, string surname, int age, string sex)
+        public Supervisor(string name, string surname, int age, string sex)
         {
             this.name = name;
             this.surname = surname;
@@ -41,25 +42,63 @@
         {
             switch (score)
             {
-                case "A":
-                case "a":
-                    this.AddScore(90);
+                case "s 6":
+                    this.AddScore(100);
                     break;
-                case "B":
-                case "b":
-                    this.AddScore(70);
+                case "s 6-":
+                case "s -6":
+                    this.AddScore(95);
                     break;
-                case "C":
-                case "c":
-                    this.AddScore(50);
+                case "s 5":
+                    this.AddScore(80);
                     break;
-                case "D":
-                case "d":
-                    this.AddScore(30);
+                case "s 5+":
+                case "s +5":
+                    this.AddScore(85);
                     break;
-                case "E":
-                case "e":
-                    this.AddScore(10);
+                case "s 5-":
+                case "s -5":
+                    this.AddScore(75);
+                    break;
+                case "s 4":
+                    this.AddScore(60);
+                    break;
+                case "s 4+":
+                case "s +4":
+                    this.AddScore(65);
+                    break;
+                case "s 4-":
+                case "s -4":
+                    this.AddScore(55);
+                    break;
+                case "s 3":
+                    this.AddScore(40);
+                    break;
+                case "s 3+":
+                case "s +3":
+                    this.AddScore(45);
+                    break;
+                case "s 3-":
+                case "s -3":
+                    this.AddScore(35);
+                    break;
+                case "s 2":
+                    this.AddScore(20);
+                    break;
+                case "s 2+":
+                case "s +2":
+                    this.AddScore(25);
+                    break;
+                case "s 2-":
+                case "s -2":
+                    this.AddScore(15);
+                    break;
+                case "s 1":
+                    this.AddScore(0);
+                    break;
+                case "s 1+":
+                case "s +1":
+                    this.AddScore(5);
                     break;
                 default:
                     if (float.TryParse(score, out float resultAsFloat))
@@ -100,7 +139,7 @@
             {
                 stat.AverageScore /= (this.scores).Count();
 
-                switch(stat.AverageScore)
+                switch (stat.AverageScore)
                 {
                     case var average when average >= 80:
                         stat.AverageScoreLetter = 'A';
