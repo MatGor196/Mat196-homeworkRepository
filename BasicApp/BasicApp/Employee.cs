@@ -1,4 +1,6 @@
-﻿namespace BasicApp
+﻿using static System.Formats.Asn1.AsnWriter;
+
+namespace BasicApp
 {
     public class Employee
     {
@@ -8,43 +10,70 @@
 
         private List<int> scores = new List<int>();
 
+        public Employee()
+        {
+            this.name = "name";
+            this.surname = "surname";
+            this.age = 0;
+        }
+
         public Employee(string name, string surname, int age)
         {
             this.name = name;
             this.surname = surname;
             this.age = age;
         }
+
         public void AddScore(int score)
         {
-            if(1 <= score && score <= 10)
+            if (0 <= score && score <= 100)
             {
                 (this.scores).Add(score);
             }
             else
             {
-                Console.WriteLine("Score is outside the range");
+                Console.WriteLine("Podano ocenę z poza zakresu");
             }
         }
 
         public void AddScore(string score)
         {
-            if(int.TryParse(score, out int resultInInt))
+            switch (score)
             {
-                this.AddScore(resultInInt);
-            }
-            else
-            {
-                Console.WriteLine("Cannot convert string to int");
+                case "A":
+                case "a":
+                    this.AddScore(90);
+                    break;
+                case "B":
+                case "b":
+                    this.AddScore(70);
+                    break;
+                case "C":
+                case "c":
+                    this.AddScore(50);
+                    break;
+                case "D":
+                case "d":
+                    this.AddScore(30);
+                    break;
+                case "E":
+                case "e":
+                    this.AddScore(10);
+                    break;
+                default:
+                    if (float.TryParse(score, out float resultAsFloat))
+                    {
+                        this.AddScore(resultAsFloat);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Podano niewłaściwą ocenę (w formie string)");
+                    }
+                    break;
             }
         }
 
         public void AddScore(float score)
-        {
-            int scoreInInt = (int)Math.Round(score);
-            this.AddScore(scoreInInt);
-        }
-
-        public void AddScore(double score)
         {
             int scoreInInt = (int)Math.Round(score);
             this.AddScore(scoreInInt);
@@ -59,29 +88,6 @@
         {
             Statistics stat = new Statistics();
 
-            foreach(var score in this.scores)
-            {
-                stat.MinScore = Math.Min(stat.MinScore, score);
-                stat.MaxScore = Math.Max(stat.MaxScore, score);
-                stat.AverageScore += score;
-            }
-
-            if((this.scores).Count() != 0)
-            {
-                stat.AverageScore /= (this.scores).Count();
-            }
-            else
-            {
-                stat.AverageScore = float.MinValue; // means error
-            }
-
-            return stat;
-        }
-
-        public Statistics GetStatisticsWithForEach()
-        {
-            Statistics stat = new Statistics();
-
             foreach (var score in this.scores)
             {
                 stat.MinScore = Math.Min(stat.MinScore, score);
@@ -92,84 +98,30 @@
             if ((this.scores).Count() != 0)
             {
                 stat.AverageScore /= (this.scores).Count();
+
+                switch(stat.AverageScore)
+                {
+                    case var average when average >= 80:
+                        stat.AverageScoreLetter = 'A';
+                        break;
+                    case var average when average >= 60:
+                        stat.AverageScoreLetter = 'B';
+                        break;
+                    case var average when average >= 40:
+                        stat.AverageScoreLetter = 'C';
+                        break;
+                    case var average when average >= 20:
+                        stat.AverageScoreLetter = 'D';
+                        break;
+                    default:
+                        stat.AverageScoreLetter = 'E';
+                        break;
+                }
             }
             else
             {
-                stat.AverageScore = float.MinValue; // means error
-            }
-
-            return stat;
-        }
-
-        public Statistics GetStatisticsWithFor()
-        {
-            Statistics stat = new Statistics();
-
-            
-            for(int index = 0; index < (this.scores).Count(); index++)
-            {
-                stat.MinScore = Math.Min(stat.MinScore, this.scores[index]);
-                stat.MaxScore = Math.Max(stat.MaxScore, this.scores[index]);
-                stat.AverageScore += this.scores[index];
-            }
-
-            if ((this.scores).Count() != 0)
-            {
-                stat.AverageScore /= (this.scores).Count();
-            }
-            else
-            {
-                stat.AverageScore = float.MinValue; // means error
-            }
-
-            return stat;
-        }
-
-        public Statistics GetStatisticsWithDoWhile()
-        {
-            Statistics stat = new Statistics();
-
-            int index = 0;
-            do
-            {
-                stat.MinScore = Math.Min(stat.MinScore, this.scores[index]);
-                stat.MaxScore = Math.Max(stat.MaxScore, this.scores[index]);
-                stat.AverageScore += this.scores[index];
-                index++;
-            } while (index < (this.scores).Count());
-
-            if ((this.scores).Count() != 0)
-            {
-                stat.AverageScore /= (this.scores).Count();
-            }
-            else
-            {
-                stat.AverageScore = float.MinValue; // means error
-            }
-
-            return stat;
-        }
-
-        public Statistics GetStatisticsWithWhile()
-        {
-            Statistics stat = new Statistics();
-
-            int index = 0;
-            while(index < (this.scores).Count())
-            {
-                stat.MinScore = Math.Min(stat.MinScore, this.scores[index]);
-                stat.MaxScore = Math.Max(stat.MaxScore, this.scores[index]);
-                stat.AverageScore += this.scores[index];
-                index++;
-            }
-
-            if ((this.scores).Count() != 0)
-            {
-                stat.AverageScore /= (this.scores).Count();
-            }
-            else
-            {
-                stat.AverageScore = float.MinValue; // means error
+                stat.MinScore = 0;
+                stat.MaxScore = 0;
             }
 
             return stat;
