@@ -74,7 +74,7 @@ namespace BasicApp.Tests
         public void AverageScoreForEmptyEmployeeTest()
         {
             // arrange
-            Employee emp = new Employee("name", "surname", 0);
+            Employee emp = new Employee();
 
             // act
             var stat = emp.GetStatistics();
@@ -87,13 +87,13 @@ namespace BasicApp.Tests
         public void AverageScoreLetterTest()
         {
             // arrange
-            Employee emp1 = new Employee("name", "surname", 0);
+            Employee emp1 = new Employee();
             emp1.AddScore("A");
             emp1.AddScore("c");
             emp1.AddScore("a");
             emp1.AddScore("C");
 
-            Employee emp2 = new Employee("name", "surname", 0);
+            Employee emp2 = new Employee();
             emp2.AddScore("a");
             emp2.AddScore("b");
             emp2.AddScore("C");

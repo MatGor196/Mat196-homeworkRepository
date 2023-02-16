@@ -1,26 +1,15 @@
 ﻿namespace BasicApp
 {
-    public class Employee
+    public class Employee : Person
     {
-        public string name { get; private set; }
-        public string surname { get; private set; }
-        public int age { get; private set; }
-
         private List<int> scores = new List<int>();
 
-        public Employee()
-        {
-            this.name = "name";
-            this.surname = "surname";
-            this.age = 0;
-        }
+        public Employee() : base()
+        {}
 
-        public Employee(string name, string surname, int age)
-        {
-            this.name = name;
-            this.surname = surname;
-            this.age = age;
-        }
+        public Employee(string name, string surname, int age, string sex):
+            base(name, surname, age, sex)
+        {}
 
         public void AddScore(int score)
         {
