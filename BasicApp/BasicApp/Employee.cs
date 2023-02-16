@@ -1,6 +1,4 @@
-﻿using static System.Formats.Asn1.AsnWriter;
-
-namespace BasicApp
+﻿namespace BasicApp
 {
     public class Employee
     {
@@ -32,7 +30,7 @@ namespace BasicApp
             }
             else
             {
-                Console.WriteLine("Podano ocenę z poza zakresu");
+                throw new Exception("Podano ocenę z poza zakresu");
             }
         }
 
@@ -67,7 +65,7 @@ namespace BasicApp
                     }
                     else
                     {
-                        Console.WriteLine("Podano niewłaściwą ocenę (w formie string)");
+                        throw new Exception("Podano niewłaściwą ocenę (w formie string)");
                     }
                     break;
             }

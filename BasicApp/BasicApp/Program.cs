@@ -14,7 +14,14 @@ while(true)
         break;
     }
 
-    emp.AddScore(input);
+    try
+    {
+        emp.AddScore(input);
+    }
+    catch(Exception ex)
+    {
+        Console.WriteLine($"{ex.Message}");
+    }
 }
 
 Console.WriteLine();
