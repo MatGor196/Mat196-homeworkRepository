@@ -1,35 +1,24 @@
 ﻿namespace BasicApp
 {
-    public class Employee : IEmployee
+    public class EmployeeInFile : EmployeeBase
     {
-        public string name { get; private set; }
-        public string surname { get; private set; }
-        public string sex { get; private set; }
-        public int age { get; private set; }
+        private const string fileWithScoresName = "scores.txt";
 
-        private List<int> scores = new List<int>();
+        public EmployeeInFile() : base()
+        { }
 
-        public Employee()
-        {
-            this.name = "no name";
-            this.surname = "no surname";
-            this.age = 0;
-            this.sex = "M";
-        }
+        public EmployeeInFile(string name, string surname, int age, string sex) :
+            base(name, surname, age, sex)
+        { }
 
-        public Employee(string name, string surname, int age, string sex)
-        {
-            this.name = name;
-            this.surname = surname;
-            this.age = age;
-            this.sex = sex;
-        }
-
-        public void AddScore(int score)
+        public override void AddScore(int score)
         {
             if (0 <= score && score <= 100)
             {
-                (this.scores).Add(score);
+                using(var writer = File.AppendText(fileWithScoresName))
+                {
+                    writer.WriteLine(score);
+                }
             }
             else
             {
@@ -37,7 +26,13 @@
             }
         }
 
-        public void AddScore(string score)
+        public override void AddScore(float score)
+        {
+            int scoreInInt = (int)Math.Round(score);
+            this.AddScore(scoreInInt);
+        }
+
+        public override void AddScore(string score)
         {
             switch (score)
             {
@@ -74,33 +69,54 @@
             }
         }
 
-        public void AddScore(float score)
+        private List<int> ReadScoresFromFile()
         {
-            int scoreInInt = (int)Math.Round(score);
-            this.AddScore(scoreInInt);
+            var scoresFromFile = new List<int>();
+
+            if (File.Exists(fileWithScoresName))
+            {
+                using(var reader = File.OpenText(fileWithScoresName))
+                {
+                    var line = reader.ReadLine();
+                    while (line != null)
+                    {
+                        var number = int.Parse(line);
+                        scoresFromFile.Add(number);
+                        line = reader.ReadLine();
+                    }
+                }
+            }
+
+            return scoresFromFile;
         }
 
-        public int SumScore()
+        public override int SumScore()
         {
-            return (this.scores).Sum();
+            var scoresFromFile = new List<int>();
+            scoresFromFile = ReadScoresFromFile();
+
+            return scoresFromFile.Sum();
         }
 
-        public Statistics GetStatistics()
+        public override Statistics GetStatistics()
         {
             Statistics stat = new Statistics();
 
-            foreach (var score in this.scores)
+            var scoresFromFile = new List<int>();
+            scoresFromFile = ReadScoresFromFile();
+
+            foreach (var score in scoresFromFile)
             {
                 stat.MinScore = Math.Min(stat.MinScore, score);
                 stat.MaxScore = Math.Max(stat.MaxScore, score);
                 stat.AverageScore += score;
             }
 
-            if ((this.scores).Count() != 0)
+            if (scoresFromFile.Count() != 0)
             {
-                stat.AverageScore /= (this.scores).Count();
+                stat.AverageScore /= scoresFromFile.Count();
 
-                switch(stat.AverageScore)
+                switch (stat.AverageScore)
                 {
                     case var average when average >= 80:
                         stat.AverageScoreLetter = 'A';

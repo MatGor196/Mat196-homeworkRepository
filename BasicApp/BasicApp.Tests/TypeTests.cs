@@ -42,8 +42,8 @@
         public void RefferenceTestForEmployee()
         {
             // arrange
-            Employee emp1 = new Employee("Jan", "Kowalski", 35);
-            Employee emp2 = new Employee("Jan", "Kowalski", 35);
+            EmployeeInMemory emp1 = new Employee("Jan", "Kowalski", 35);
+            EmployeeInMemory emp2 = new Employee("Jan", "Kowalski", 35);
 
             // act
 

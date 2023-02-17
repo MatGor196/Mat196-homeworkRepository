@@ -4,7 +4,7 @@ Console.WriteLine("Program oceny pracowników");
 Console.WriteLine("-------------------------");
 Console.WriteLine();
 
-var emp = new Employee();
+var emp = new EmployeeInFile();
 Console.WriteLine("Podaj oceny pracownika (0-100 lub A-E):");
 while(true)
 {
@@ -30,5 +30,5 @@ var statistic = emp.GetStatistics();
 
 Console.WriteLine($"Minimaly wynik: {statistic.MinScore}");
 Console.WriteLine($"Maksymaly wynik: {statistic.MaxScore}");
-Console.WriteLine($"Średni wynik: {statistic.AverageScore:N2}");
+Console.WriteLine($"Średni wynik: {statistic.AverageScore:N1}");
 Console.WriteLine($"Średni wynik (literowo): {statistic.AverageScoreLetter}");

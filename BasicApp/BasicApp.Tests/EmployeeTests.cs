@@ -6,7 +6,7 @@ namespace BasicApp.Tests
         public void AddScoreSumScoreTest()
         {
             // arrange
-            Employee emp = new Employee();
+            EmployeeInMemory emp = new EmployeeInMemory();
             var result = 0;
 
             // act
@@ -23,7 +23,7 @@ namespace BasicApp.Tests
         public void MinScoreTest()
         {
             // arrange
-            Employee emp = new Employee();
+            EmployeeInMemory emp = new EmployeeInMemory();
 
             // act
             emp.AddScore(15);
@@ -40,7 +40,7 @@ namespace BasicApp.Tests
         public void MaxScoreTest()
         {
             // arrange
-            Employee emp = new Employee();
+            EmployeeInMemory emp = new EmployeeInMemory();
 
             // act
             emp.AddScore(15);
@@ -57,7 +57,7 @@ namespace BasicApp.Tests
         public void AverageScoreTest()
         {
             // arrange
-            Employee emp = new Employee();
+            EmployeeInMemory emp = new EmployeeInMemory();
 
             // act
             emp.AddScore(15);
@@ -74,7 +74,7 @@ namespace BasicApp.Tests
         public void AverageScoreForEmptyEmployeeTest()
         {
             // arrange
-            Employee emp = new Employee();
+            EmployeeInMemory emp = new EmployeeInMemory();
 
             // act
             var stat = emp.GetStatistics();
@@ -87,13 +87,13 @@ namespace BasicApp.Tests
         public void AverageScoreLetterTest()
         {
             // arrange
-            Employee emp1 = new Employee();
+            EmployeeInMemory emp1 = new EmployeeInMemory();
             emp1.AddScore("A");
             emp1.AddScore("c");
             emp1.AddScore("a");
             emp1.AddScore("C");
 
-            Employee emp2 = new Employee();
+            EmployeeInMemory emp2 = new EmployeeInMemory();
             emp2.AddScore("a");
             emp2.AddScore("b");
             emp2.AddScore("C");
