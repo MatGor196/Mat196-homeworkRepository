@@ -2,9 +2,8 @@
 
 Console.WriteLine("Program oceny pracowników");
 Console.WriteLine("-------------------------");
-Console.WriteLine();
 
-var emp = new EmployeeInMemory();
+var emp = new EmployeeInFile();
 
 void WriteScoreAddedProcedure(object sender, EventArgs args)
 {

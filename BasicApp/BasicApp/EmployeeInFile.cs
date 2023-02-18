@@ -114,38 +114,7 @@
 
             foreach (var score in scoresFromFile)
             {
-                stat.MinScore = Math.Min(stat.MinScore, score);
-                stat.MaxScore = Math.Max(stat.MaxScore, score);
-                stat.AverageScore += score;
-            }
-
-            if (scoresFromFile.Count() != 0)
-            {
-                stat.AverageScore /= scoresFromFile.Count();
-
-                switch (stat.AverageScore)
-                {
-                    case var average when average >= 80:
-                        stat.AverageScoreLetter = 'A';
-                        break;
-                    case var average when average >= 60:
-                        stat.AverageScoreLetter = 'B';
-                        break;
-                    case var average when average >= 40:
-                        stat.AverageScoreLetter = 'C';
-                        break;
-                    case var average when average >= 20:
-                        stat.AverageScoreLetter = 'D';
-                        break;
-                    default:
-                        stat.AverageScoreLetter = 'E';
-                        break;
-                }
-            }
-            else
-            {
-                stat.MinScore = 0;
-                stat.MaxScore = 0;
+                stat.AddScore(score);
             }
 
             return stat;
