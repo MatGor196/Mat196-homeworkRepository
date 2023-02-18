@@ -1,36 +1,29 @@
 ﻿
 namespace BasicApp
 {
-    public class Supervisor : IEmployee
+    public class Supervisor : EmployeeBase
     {
-        public string name { get; private set; }
-        public string surname { get; private set; }
-        public string sex { get; private set; }
-        public int age { get; private set; }
-
         private List<int> scores = new List<int>();
 
-        public Supervisor()
-        {
-            this.name = "no name";
-            this.surname = "no surname";
-            this.age = 0;
-            this.sex = "M";
-        }
+        public override event ScoreAddedDelegateType ScoreAdded;
 
-        public Supervisor(string name, string surname, int age, string sex)
-        {
-            this.name = name;
-            this.surname = surname;
-            this.age = age;
-            this.sex = sex;
-        }
+        public Supervisor(): base()
+        { }
 
-        public void AddScore(int score)
+        public Supervisor(string name, string surname, int age, string sex):
+            base(name, surname, age, sex)
+        { }
+
+        public override void AddScore(int score)
         {
             if (0 <= score && score <= 100)
             {
                 (this.scores).Add(score);
+
+                if(ScoreAdded != null)
+                {
+                    ScoreAdded(this, EventArgs.Empty);
+                }
             }
             else
             {
@@ -38,7 +31,7 @@ namespace BasicApp
             }
         }
 
-        public void AddScore(string score)
+        public override void AddScore(string score)
         {
             switch (score)
             {
@@ -113,18 +106,18 @@ namespace BasicApp
             }
         }
 
-        public void AddScore(float score)
+        public override void AddScore(float score)
         {
             int scoreInInt = (int)Math.Round(score);
             this.AddScore(scoreInInt);
         }
 
-        public int SumScore()
+        public override int SumScore()
         {
             return (this.scores).Sum();
         }
 
-        public Statistics GetStatistics()
+        public override Statistics GetStatistics()
         {
             Statistics stat = new Statistics();
 

@@ -4,7 +4,7 @@
     {
         private const string fileWithScoresName = "scores.txt";
 
-        public event ScoreAddedDelegateType ScoreAdded;
+        public override event ScoreAddedDelegateType ScoreAdded;
 
         public EmployeeInFile() : base()
         { }

@@ -8,6 +8,7 @@
         public int age { get; private set; }
 
         public delegate void ScoreAddedDelegateType(object sender, EventArgs args);
+        public abstract event ScoreAddedDelegateType ScoreAdded;
 
         public EmployeeBase()
         {

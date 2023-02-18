@@ -4,7 +4,7 @@
     {
         private List<int> scores = new List<int>();
 
-        public event ScoreAddedDelegateType ScoreAdded;
+        public override event ScoreAddedDelegateType ScoreAdded;
 
         public EmployeeInMemory() : base()
         { }

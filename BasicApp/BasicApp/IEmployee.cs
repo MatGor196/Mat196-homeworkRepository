@@ -1,15 +1,20 @@
-﻿namespace BasicApp
+﻿using static BasicApp.EmployeeBase;
+
+namespace BasicApp
 {
     public interface IEmployee
     {
-        public string name { get; }
-        public string surname { get; }
-        public string sex { get; }
-        public int age { get; }
-        public void AddScore(int score);
-        public void AddScore(float score);
-        public void AddScore(string score);
-        public int SumScore();
-        public Statistics GetStatistics();
+        string name { get; }
+        string surname { get; }
+        string sex { get; }
+        int age { get; }
+
+        event ScoreAddedDelegateType ScoreAdded;
+
+        void AddScore(int score);
+        void AddScore(float score);
+        void AddScore(string score);
+        int SumScore();
+        Statistics GetStatistics();
     }
 }
