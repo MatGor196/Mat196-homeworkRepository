@@ -6,6 +6,9 @@
         public string surname { get; private set; }
         public string sex { get; private set; }
         public int age { get; private set; }
+
+        public delegate void ScoreAddedDelegateType(object sender, EventArgs args);
+
         public EmployeeBase()
         {
             this.name = "no name";

@@ -4,7 +4,15 @@ Console.WriteLine("Program oceny pracowników");
 Console.WriteLine("-------------------------");
 Console.WriteLine();
 
-var emp = new EmployeeInFile();
+var emp = new EmployeeInMemory();
+
+void WriteScoreAddedProcedure(object sender, EventArgs args)
+{
+    Console.WriteLine("Dodano nowy wynik");
+}
+
+emp.ScoreAdded += WriteScoreAddedProcedure;
+
 Console.WriteLine("Podaj oceny pracownika (0-100 lub A-E):");
 while(true)
 {

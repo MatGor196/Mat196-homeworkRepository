@@ -4,18 +4,25 @@
     {
         private List<int> scores = new List<int>();
 
+        public event ScoreAddedDelegateType ScoreAdded;
+
         public EmployeeInMemory() : base()
-        {}
+        { }
 
         public EmployeeInMemory(string name, string surname, int age, string sex) :
             base(name, surname, age, sex)
-        {}
+        { }
 
         public override void AddScore(int score)
         {
             if (0 <= score && score <= 100)
             {
                 (this.scores).Add(score);
+
+                if (ScoreAdded != null)
+                {
+                    ScoreAdded(this, new EventArgs());
+                }
             }
             else
             {

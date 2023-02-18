@@ -4,6 +4,8 @@
     {
         private const string fileWithScoresName = "scores.txt";
 
+        public event ScoreAddedDelegateType ScoreAdded;
+
         public EmployeeInFile() : base()
         { }
 
@@ -18,6 +20,11 @@
                 using(var writer = File.AppendText(fileWithScoresName))
                 {
                     writer.WriteLine(score);
+                }
+
+                if(ScoreAdded != null)
+                {
+                    ScoreAdded(this, EventArgs.Empty);
                 }
             }
             else
